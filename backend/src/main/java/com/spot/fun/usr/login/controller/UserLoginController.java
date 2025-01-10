@@ -31,7 +31,7 @@ import java.util.PriorityQueue;
 @RequestMapping("/api/usr/login")
 public class UserLoginController {
   private final UserLoginService userLoginService;
-  private final AuthTokenUtil authTokenUtil;
+  private final AuthTokenUtil  authTokenUtil;
 
   @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody UserDTO userDTO, HttpServletResponse response) {
