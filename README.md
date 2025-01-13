@@ -105,24 +105,27 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 ## 6. 참여부분 핵심 기능
 
-### 참여부분 기능 설명
+### 6.1. 로그인
 
-#### 6.1. 로그인
+#### 6.1.1 자체로그인 
 
-##### 6.1.1 자체로그인 
+> JWT와 Security를 사용하고 쿠키에 토큰을 저장하는 방식의 자체로그인을 구현</br>
+> - BackEnd코드</br>
+> [Controller 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/login/controller/UserLoginController.java#L1-L95)</br>
+> [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/login/service/UserLoginServiceImpl.java#L1-L70)</br>
+> - FrontEnd코드</br>
+> [Compornent 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/login/component/LoginComponent.jsx#L1-L247)</br>
+> [API 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/login/api/LoginApi.js#L1-L16)</br>
 
-> JWT와 Security를 사용하고 쿠키에 토큰을 저장하는 방식의 자체로그인을 구현
-> BackEnd코드
-> [코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/login/controller/UserLoginController.java#L1-L95)
+#### 6.1.2 OAuth2 로그인
+>구글,네이버,카카오를 이용한 OAuth2 소셜 로그인 기능 구현</br>
+> - BackEnd코드</br>
+> [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/oauthlogin/service/CustomOAuth2UserService.java#L1-L167)</br>
+>[핸들러 코드보기](https://github.com/SKYCloud11/Final-Project/blob/6cbcc17155a1a52bb815549555830d75f305331a/backend/src/main/java/com/spot/fun/config/WebSecurityConfig.java#L173-L252)
 
-6.1.2 로그인 처리기능 post 메서드
 
 ### 6.2. 회원가입
-![image](https://github.com/user-attachments/assets/d3a3c490-6cf3-4f65-9328-26169b66fd77)
-![image](https://github.com/user-attachments/assets/f9687e3d-f4fb-4702-bcf2-8461851c5509)
 
-6.2.1 회원가입 처리기능 메서드 파라미터로 입력값 받은 후 JSP 유효성검사와 서버측 유효성검사 실행
-      DTO객체 생성 및 비밀번호 SHA-256 해시 처리 DAO 싱글톤 구현 
 
 ### 6.3. 이메일 인증
 ![image](https://github.com/user-attachments/assets/c2cb933d-d31c-4e53-a8ae-4ed03106e620)
