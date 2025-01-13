@@ -61,8 +61,9 @@
 
 
 ## 4. 핵심 기능
-댕댕히어로즈 서비스의 핵심 기능은 봉사신청 및 커뮤니티 기능입니다.
-캘린더 기능을 이용하여 사용자가 직접 봉사 신청을 하고, 게시판을 사용하여 사용자들과의 커뮤니케이션, 봉사, 유기견에 관한 정보 공유를 할 수 있습니다.
+FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 및 커뮤니티 기능입니다.
+사용자 커스텀 여행 코스 제작을 통하여 사용자가 직접 여행지 코스를 짜고 게시판에 업로드 하고 피드를 통해 자신이 다녀온 
+여행지를 여러 사용자들과 공유하고 소통하며 채팅을 통해 자신만의 여행지를 일부 사람들에게 공유 할 수 있습니다.
 
 </br>
 
@@ -103,17 +104,16 @@
 </br>
 
 ## 6. 참여부분 핵심 기능
-<details>
-<summary><b>참여부분 설명 펼치기</b></summary>
-<div markdown="1">
 
-### 6.1. 로그인
+### 참여부분 기능 설명
 
-![image](https://github.com/user-attachments/assets/66cce10d-86c0-4d65-80c2-e3d94219fd13)
+#### 6.1. 로그인
 
-6.1.1 로그인 페이지 이동 get 메서드
+##### 6.1.1 자체로그인 
 
-![image](https://github.com/user-attachments/assets/25389fa5-7ae8-4609-bb89-0bd71439afb9)
+> JWT와 Security를 사용하고 쿠키에 토큰을 저장하는 방식의 자체로그인을 구현
+> BackEnd코드
+> [코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/login/controller/UserLoginController.java#L1-L95)
 
 6.1.2 로그인 처리기능 post 메서드
 
