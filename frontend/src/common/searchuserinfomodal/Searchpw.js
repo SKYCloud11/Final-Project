@@ -260,63 +260,63 @@ const Searchpw = ({ onClose }) => {
           </div>
           <button
             onClick={handleSubmit}
-            className="bg-custom-cyan rounded-3xl mt-1 ml-2 p-2 w-32 hover:bg-emerald-400"
+            className="bg-custom-cyan rounded-3xl mt-1 mb-1 p-2 w-32 hover:bg-emerald-400 flex justify-center mx-auto"
           >
             비밀번호 찾기
           </button>
         </>
       ) : (
-        <div>
-          <h2 className="flex flex-col justify-center items-center text-2xl font-bold m-5">
-            새 비밀번호 설정
-          </h2>
-          <div>
-            <p className="font-bold">새 비밀번호</p>
-            <input
-              type="password"
-              name="newPassword"
-              placeholder="영문, 숫자, 특수문자 포함 8~16자"
-              onChange={handlePasswordChange}
-              className="mt-1 p-2 mb-2 w-52 rounded-3xl border 
-            focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
-              onBlur={() =>
-                setIsTouched((prevState) => ({
-                  ...prevState,
-                  newPassword: true,
-                }))
-              }
-            />
-            {errors.password && (
-              <p style={{ color: "red" }}>{errors.password}</p>
-            )}
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="flex flex-col justify-center items-center text-2xl font-bold m-5">
+              새 비밀번호 설정
+            </h2>
+            <div className="flex flex-col items-center space-y-4">
+              <div>
+                <p className="font-bold">새 비밀번호</p>
+                <input
+                    type="password"
+                    name="newPassword"
+                    placeholder="영문, 숫자, 특수문자 포함 8~16자"
+                    onChange={handlePasswordChange}
+                    className="mt-1 p-2 mb-2 w-52 rounded-3xl border
+          focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
+                    onBlur={() =>
+                        setIsTouched((prevState) => ({
+                          ...prevState,
+                          newPassword: true,
+                        }))
+                    }
+                />
+                {errors.password && <p style={{color: "red"}}>{errors.password}</p>}
+              </div>
+              <div>
+                <p className="font-bold">새 비밀번호 확인</p>
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="새 비밀번호 확인"
+                    onChange={handlePasswordChange}
+                    className="mt-1 p-2 w-52 rounded-3xl border
+          focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
+                    onBlur={() =>
+                        setIsTouched((prevState) => ({
+                          ...prevState,
+                          confirmPassword: true,
+                        }))
+                    }
+                />
+                {errors.confirmPassword && (
+                    <p style={{color: "red"}}>{errors.confirmPassword}</p>
+                )}
+              </div>
+              <button
+                  onClick={handlePasswordSubmit}
+                  className="bg-custom-cyan justify-center rounded-3xl p-2 w-32 hover:bg-emerald-400"
+              >
+                비밀번호 변경
+              </button>
+            </div>
           </div>
-          <div>
-            <p className="font-bold">새 비밀번호 확인</p>
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="새 비밀번호 확인"
-              onChange={handlePasswordChange}
-              className="mt-1 p-2 w-52 rounded-3xl border 
-            focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
-              onBlur={() =>
-                setIsTouched((prevState) => ({
-                  ...prevState,
-                  confirmPassword: true,
-                }))
-              }
-            />
-            {errors.confirmPassword && (
-              <p style={{ color: "red" }}>{errors.confirmPassword}</p>
-            )}
-          </div>
-          <button
-            onClick={handlePasswordSubmit}
-            className="bg-custom-cyan justify-center rounded-3xl mt-1 ml-2 p-2 w-32 hover:bg-emerald-400"
-          >
-            비밀번호 변경
-          </button>
-        </div>
       )}
     </div>
   );

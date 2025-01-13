@@ -11,6 +11,9 @@ import { ReactComponent as Kakao } from "../../../common/img/kakao.svg";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
+
 const LoginComponent = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -75,7 +78,7 @@ const LoginComponent = () => {
   };
 
   const handleSocialLogin = (provider) => {
-    window.location.href = `http://funspot.store/oauth2/authorization/${provider}`;
+    window.location.href = `${API_BASE_URL}/oauth2/authorization/${provider}`;
   };
 
   useEffect(() => {
@@ -181,18 +184,27 @@ const LoginComponent = () => {
       {isIdModalOpen && (
         <SearchModal
           isOpen={isIdModalOpen}
-          onClose={() => setIsIdModalOpen(false)}
+          onClose={() => {setIsIdModalOpen(false);
+            idInputRef.current?.focus();
+          }}
         >
-          <Searchid onClose={() => setIsIdModalOpen(false)} />
+          <Searchid onClose={() => {
+            setIsIdModalOpen(false);
+            idInputRef.current?.focus();
+          }} />
         </SearchModal>
       )}
 
       {isPwModalOpen && (
         <SearchModal
           isOpen={isPwModalOpen}
-          onClose={() => setIsPwModalOpen(false)}
+          onClose={() => {setIsPwModalOpen(false);
+            idInputRef.current?.focus();
+          }}
         >
-          <Searchpw onClose={() => setIsPwModalOpen(false)} />
+          <Searchpw onClose={() => {setIsPwModalOpen(false);
+            idInputRef.current?.focus();
+          }} />
         </SearchModal>
       )}
 

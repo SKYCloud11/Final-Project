@@ -67,9 +67,9 @@ public class WebSecurityConfig {
 //    @Value("${security.check.path.none}")
 //    private String[] PERMITTED_PATHS;
 
-    @Value("${server.host.url}")
-    private String serverUrl;
-//    private String serverUrl="http://localhost:3000"; // 로컬에서 테스트할때 사용 (oauth 로그인 리디렉트)
+//    @Value("${server.host.url}")
+//    private String serverUrl;
+    private String serverUrl="http://localhost:3000"; // 로컬에서 테스트할때 사용 (oauth 로그인 리디렉트)
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception  {
@@ -113,7 +113,7 @@ public class WebSecurityConfig {
 
         // 허용하는 Origin 설정
         configuration.addAllowedOrigin("http://localhost:3000");
-        configuration.addAllowedOrigin("funspot.store");
+//        configuration.addAllowedOrigin("funspot.store");
         configuration.addAllowedOrigin(serverUrl);
 
         // 허용할 HTTP 메서드 추가 (PATCH, DELETE, OPTIONS 등)

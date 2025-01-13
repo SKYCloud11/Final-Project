@@ -5,7 +5,7 @@ import {
   searchIdApi,
 } from "../../usr/searchuserinfo/api/SearchUser";
 
-const Searchid = ({ onClose, focusIdField }) => {
+const Searchid = ({ onClose }) => {
   const [isEmailVerified, setIsEmailVerified] = useState(false); // 이메일 인증 상태
   const [verificationCode, setVerificationCode] = useState(""); // 사용자 입력 인증 코드
   const [serverCode, setServerCode] = useState(null); // 서버 생성 인증 코드
@@ -118,107 +118,107 @@ const Searchid = ({ onClose, focusIdField }) => {
     }
   };
 
+
   return (
     <div>
       <h2 className="flex flex-col justify-center items-center text-2xl font-bold m-5">
         아이디 찾기
       </h2>
       {!searchResult ? (
-        <>
-          <div>
-            <p className="font-bold">이름</p>
-            <input
-              type="text"
-              name="name"
-              placeholder="이름"
-              onChange={handleInputChange}
-              className="mt-1 p-2 w-52 mb-2 rounded-3xl border 
+          <>
+            <div>
+              <p className="font-bold">이름</p>
+              <input
+                  type="text"
+                  name="name"
+                  placeholder="이름"
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 w-52 mb-2 rounded-3xl border
             focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
-            />
-            {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
-          </div>
-          <div>
-            <p className="font-bold">생년월일</p>
-            <input
-              type="date"
-              name="birthDate"
-              onChange={handleInputChange}
-              className="mt-1 p-2 w-52 mb-2 rounded-3xl border 
+              />
+              {errors.name && <p style={{color: "red"}}>{errors.name}</p>}
+            </div>
+            <div>
+              <p className="font-bold">생년월일</p>
+              <input
+                  type="date"
+                  name="birthDate"
+                  onChange={handleInputChange}
+                  className="mt-1 p-2 w-52 mb-2 rounded-3xl border
             focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
-            />
-            {errors.birthDate && (
-              <p style={{ color: "red" }}>{errors.birthDate}</p>
-            )}
-          </div>
-          <div>
-            <p className="font-bold">이메일</p>
-            <input
-              type="email"
-              name="email"
-              placeholder="example@naver.com"
-              onChange={handleInputChange}
-              disabled={isEmailVerified}
-              className="mt-1 p-2 w-52 mb-2 rounded-3xl border 
+              />
+              {errors.birthDate && (
+                  <p style={{color: "red"}}>{errors.birthDate}</p>
+              )}
+            </div>
+            <div>
+              <p className="font-bold">이메일</p>
+              <input
+                  type="email"
+                  name="email"
+                  placeholder="example@naver.com"
+                  onChange={handleInputChange}
+                  disabled={isEmailVerified}
+                  className="mt-1 p-2 w-52 mb-2 rounded-3xl border
             focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
-            />
+              />
+              <button
+                  type="button"
+                  onClick={handleSendEmailVerification}
+                  disabled={isEmailVerified}
+                  className="bg-custom-cyan rounded-3xl mt-1 ml-2 p-2 w-32 hover:bg-emerald-400"
+              >
+                메일 전송
+              </button>
+              {errors.email && <p style={{color: "red"}}>{errors.email}</p>}
+            </div>
+            <div>
+              <p className="font-bold">인증 코드</p>
+              <input
+                  type="text"
+                  placeholder="인증코드 입력"
+                  name="verificationCode"
+                  value={verificationCode}
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                  disabled={isEmailVerified}
+                  className="mt-1 p-2 mb-2 w-52 rounded-3xl border
+            focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
+              />
+              <button
+                  type="button"
+                  onClick={handleVerifyCode}
+                  disabled={isEmailVerified}
+                  className="bg-custom-cyan rounded-3xl mt-1 mb-1 ml-2 p-2 w-32 justify-center  hover:bg-emerald-400"
+              >
+                인증 확인
+              </button>
+            </div>
             <button
-              type="button"
-              onClick={handleSendEmailVerification}
-              disabled={isEmailVerified}
-              className="bg-custom-cyan rounded-3xl mt-1 ml-2 p-2 w-32 hover:bg-emerald-400"
+                onClick={handleSubmit}
+                disabled={isSearching}
+                className="bg-custom-cyan rounded-3xl mt-1 mb-1 p-2 w-32 hover:bg-emerald-400 flex justify-center mx-auto"
             >
-              메일 전송
+              {isSearching ? "검색 중..." : "아이디 찾기"}
             </button>
-            {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-          </div>
-          <div>
-            <p className="font-bold">인증 코드</p>
-            <input
-              type="text"
-              placeholder="인증코드 입력"
-              name="verificationCode"
-              value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
-              disabled={isEmailVerified}
-              className="mt-1 p-2 mb-2 w-52 rounded-3xl border 
-            focus:outline-none focus:ring-1 focus:border-custom-cyan focus:ring-custom-cyan bg-gray-200"
-            />
-            <button
-              type="button"
-              onClick={handleVerifyCode}
-              disabled={isEmailVerified}
-              className="bg-custom-cyan rounded-3xl mt-1 mb-1 ml-2 p-2 w-32 justify-center  hover:bg-emerald-400"
-            >
-              인증 확인
-            </button>
-          </div>
-          <button
-            onClick={handleSubmit}
-            disabled={isSearching}
-            className="bg-custom-cyan rounded-3xl mt-1 mb-1 ml-2 p-2 w-32 justify-center  hover:bg-emerald-400 flex"
-          >
-            {isSearching ? "검색 중..." : "아이디 찾기"}
-          </button>
-        </>
+          </>
       ) : (
-        <div>
-          {searchResult.userId ? (
-            <p>
-              찾으시는 아이디는 <strong>{searchResult.userId}</strong> 입니다.
-            </p>
-          ) : (
-            <p>입력하신 정보와 일치하는 아이디가 없습니다.</p>
-          )}
-          <button
-            onClick={() => {
-              onClose();
-              focusIdField();
-            }}
-            className="bg-custom-cyan rounded-3xl mt-1 mb-1 ml-2 p-2 w-32 justify-center  hover:bg-emerald-400 flex"
-          >
-            로그인하러 가기
-          </button>
-        </div>
+          <div className="flex flex-col items-center justify-center space-y-4"> {/* 부모 컨테이너 수정 */}
+            {searchResult.userId ? (
+                <p className="text-center">
+                  찾으시는 아이디는 <strong>{searchResult.userId}</strong> 입니다.
+                </p>
+            ) : (
+                <p className="text-center">입력하신 정보와 일치하는 아이디가 없습니다.</p>
+            )}
+            <button
+                onClick={() => {
+                  onClose();
+                }}
+                className="bg-custom-cyan rounded-3xl p-2 w-40 hover:bg-emerald-400 flex justify-center"
+            >
+              로그인하러 가기
+            </button>
+          </div>
       )}
     </div>
   );
