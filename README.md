@@ -1,4 +1,4 @@
-# Final-Project
+![image](https://github.com/user-attachments/assets/4555abc8-4e36-4c32-821f-dea563a2205a)# Final-Project
 더조은 파이널 프로젝트
 
 # :pushpin: FunSpot
@@ -75,6 +75,7 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 ### 1. 로그인 페이지(OAuth2 포함)
 ![image](https://github.com/user-attachments/assets/4500d40b-e8d2-4b5d-88cb-b5d2e79afbbd)</br>
 - 자체로그인과 소셜로그인이 함께 페이지에 나타납니다.
+- 소셜 로그인시 구글,네이버,카카오 아이콘 클릭시 소셜 아이디로 로그인하면 FunSpot페이지에 로그인이 가능합니다.
 ![image](https://github.com/user-attachments/assets/87b878cc-cc77-42d6-b733-2478a31c3d95)</br>
 - 로그인 후 헤더 부분의 로그인 / 회원가입 부분이 닉네임으로 표시 됩니다.
 
@@ -188,35 +189,42 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 
 ## 7. 핵심 트러블 슈팅
-### 7.1. 이메일 재인증 불가 이슈
-- 저는 이메일 인증 서비스가 회원가입과 아이디&비밀번호 찾기에 모두 다 사용되기를 바라는 마음으로
-개발하였습니다. 
+### 7.1. OAuth2 로그인 이슈 
+- 소셜로그인 이후 명시적으로 리다이렉트URL을 CustomOAuth2UserService에 지정했지만  Spring Security가 기본적으로 제공하는 로그인 성공 화면으로이동하는 문제가 발생하였습니다.
 
-- 하지만 세션처리에 관한 공부를 제대로 하지못하여 한번 이메일 인증을하면 그 이메일 인증정보가 세션에 저장되어
-  브라우저를 끈후 재접속하여 세션을 만료시킨뒤 재인증이 가능하게 된 현상을 발견하였습니다.
+- OAuth2로그인을 처음으로 구현해보았기에 CustomOAuth2UserService만 작성하고 이 안에서 리다이렉트처리를 하면된다고 생각하였지만 해당 이슈를 통해 구글링 한 결과 성공 핸들러와 실패 핸들러 프론트의 성공페이지를 작성하여야 한다는것을 알게 되었습니다.
 
 <details>
 <summary><b>기존 코드</b></summary>
 <div markdown="1">
 
-![image](https://github.com/user-attachments/assets/4c8bab87-5c04-4a78-a1ee-77a979e97843)
-세션에 인증번호를 저장하고 저장된 인증번호를 확인
-그에 따른 응답을 JSON으로 JSP로 전달하는 방식으로 초기 구현
-
+![image](https://github.com/user-attachments/assets/9dee49f0-881e-442e-b3d3-7813ae4dab80)</br>
+![image](https://github.com/user-attachments/assets/c7edd8d9-eb0d-462a-a1f9-7c8426bdefc1)</br>
+- 기존의 코드는 로그인 성공 실패 핸들러 없이 Service내에서 jwt토큰 생성과 http 응답객체를 가져오고
+  로그인 성공 페이지로 메인페이지를 리다이렉트하였고 비회원의 경우 바로 Repository에 저장
+  이후 자체 회원가입페이지로 리다이렉트 하였습니다.
 
 </div>
 </details>
 
-- 하여 Servlet에서 목적에 따라 세션을 체크하는 sendEmailAuthCodeForRecovery 메서드 부분을 추가하였습니다.   
-- 회원가입과 아이디 & 비밀번호찾기 페이지에서 이미 이메일 인증이 된 사용자인지 확인(목적에따라 세션에서 확인)
-- 인증이 된 경우 JSON응답을 통해 에러 메세지 출력하도록 하였습니다.
-- 인증이 되지않은 경우에만 인증번호 생성 및 발송 로직 실행하도록 구현 하였습니다.
-
+- 계속된 Spring Security 기본 로그인 성공 화면으로 이동하는 이슈로 인해 WebSecurityConfig에 Bean으로 성공 실패 핸드러를
+  작성하고 filterChain에 OAuth2 로그인 설정에 해당 핸들러를 설정해주고 LoginSuccess페이지를 작성하여 해결하였습니다.
+  
 <details>
 <summary><b>개선된 코드</b></summary>
 <div markdown="1">
 
-![image](https://github.com/user-attachments/assets/de7871f4-babb-4323-879d-c2a6c47f05d6)
+![image](https://github.com/user-attachments/assets/37d77102-959e-46b7-8721-00fff2df4f1a)</br>
+![image](https://github.com/user-attachments/assets/558a87ff-a481-4900-a69a-242b3326dbf7)</br>
+![image](https://github.com/user-attachments/assets/fe29e2fa-7dce-47dc-a30b-32b8c0136d6f)</br>
+- CustomOAuth2UserService수정(리다이렉트 처리과정 삭제,Provider를 통한 소셜 구분,회원 비회원처리 수정,탈퇴회원 구분)
+![image](https://github.com/user-attachments/assets/39bcfa1a-39ca-4d7c-8cc5-645235c8f61a)</br>
+![image](https://github.com/user-attachments/assets/51bfc879-8ec3-4e5a-9cd6-ff499b6074e3)</br>
+- OAuth2 로그인 성공 핸들러
+![image](https://github.com/user-attachments/assets/d577698c-5e8b-46b2-a610-3da6276023e8)</br>
+- OAuth2 로그인 실패 핸들러
+![image](https://github.com/user-attachments/assets/852c3973-419e-4fec-b943-7675ad56dc21)</br>
+- LoginSuccess페이지 
 
 
 </div>
