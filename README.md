@@ -40,17 +40,24 @@
 ## 2. 사용 기술
 ####
   - Java 17
-  - Jsp+Servlet
+  - REACT
   - MySQL 8.4
-  - AJax
-  - JSON
-  - HTML+JavaScript+CSS
-  - 카카오 우편API
-  - JSTL
+  - Spring Boot
+  - JWT
+  - TailWindCSS
+  - 공공데이터포탈 API
+  - 카카오,네이버 지도 API
+  - 카카오 우편 API
+  - Spring Security
+  - lombok
+  - AWS
+  - WebSocket
+  - JPA
+  - Figma
 </br>
 
 ## 3. ERD 설계
-![image](https://github.com/user-attachments/assets/792e293e-5fb1-49fc-9eb0-c488cddab5db)
+![image](https://github.com/user-attachments/assets/7dcccd75-465d-4aee-9d8e-afb1d26c183a)
 
 
 ## 4. 핵심 기능
