@@ -137,7 +137,7 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 > [Compornent(자체) 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/component/SignupComponent.jsx#L1-L595)</br>
 > [Compornent(소셜) 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/component/SocialSignupComponent.jsx#L1-L503)</br>
 > [API 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/api/SignupApi.js#L1-L51)</br>
-> - 자체와 소셜 API는 같은 API에 작성</br>
+> - 자체와 소셜 이메인 인증 API는 같은 API에 작성</br>
 
 ### 6.3. 이메일 인증
 
@@ -166,11 +166,6 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 > 토큰 생성, 검증, 삭제, 쿠키 관리, 토큰 갱신, 그리고 사용자 인증 정보를 반환하는 유틸리티 역할을 구현 하였습니다.</br>
 > [Utill 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/token/util/AuthTokenUtil.java#L1-L252)</br>
 
-
-</div>
-</details>
-
-</br>
 
 ## 7. 핵심 트러블 슈팅
 ### 7.1. 이메일 재인증 불가 이슈
