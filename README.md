@@ -190,6 +190,8 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 ## 7. 핵심 트러블 슈팅
 ### 7.1. OAuth2 로그인 이슈 
+
+#### 기존 사항 
 - 소셜로그인 이후 명시적으로 리다이렉트URL을 CustomOAuth2UserService에 지정했지만  Spring Security가 기본적으로 제공하는 로그인 성공 화면으로이동하는 문제가 발생하였습니다.
 
 - OAuth2로그인을 처음으로 구현해보았기에 CustomOAuth2UserService만 작성하고 이 안에서 리다이렉트처리를 하면된다고 생각하였지만 해당 이슈를 통해 구글링 한 결과 성공 핸들러와 실패 핸들러 프론트의 성공페이지를 작성하여야 한다는것을 알게 되었습니다.
@@ -206,6 +208,8 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 </div>
 </details>
+
+#### 개선 사항 
 
 - 계속된 Spring Security 기본 로그인 성공 화면으로 이동하는 이슈로 인해 WebSecurityConfig에 Bean으로 성공 실패 핸드러를
   작성하고 filterChain에 OAuth2 로그인 설정에 해당 핸들러를 설정해주고 LoginSuccess페이지를 작성하여 해결하였습니다.
