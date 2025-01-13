@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4555abc8-4e36-4c32-821f-dea563a2205a)# Final-Project
+# Final-Project
 더조은 파이널 프로젝트
 
 # :pushpin: FunSpot
@@ -197,12 +197,12 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 <details>
 <summary><b>기존 코드</b></summary>
 <div markdown="1">
-
-![image](https://github.com/user-attachments/assets/9dee49f0-881e-442e-b3d3-7813ae4dab80)</br>
-![image](https://github.com/user-attachments/assets/c7edd8d9-eb0d-462a-a1f9-7c8426bdefc1)</br>
+ 
 - 기존의 코드는 로그인 성공 실패 핸들러 없이 Service내에서 jwt토큰 생성과 http 응답객체를 가져오고
   로그인 성공 페이지로 메인페이지를 리다이렉트하였고 비회원의 경우 바로 Repository에 저장
-  이후 자체 회원가입페이지로 리다이렉트 하였습니다.
+  이후 자체 회원가입페이지로 리다이렉트 하였습니다.</br>
+![image](https://github.com/user-attachments/assets/9dee49f0-881e-442e-b3d3-7813ae4dab80)</br>
+![image](https://github.com/user-attachments/assets/c7edd8d9-eb0d-462a-a1f9-7c8426bdefc1)</br>
 
 </div>
 </details>
@@ -213,18 +213,18 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 <details>
 <summary><b>개선된 코드</b></summary>
 <div markdown="1">
-
+ 
+- CustomOAuth2UserService수정(리다이렉트 처리과정 삭제,Provider를 통한 소셜 구분,회원 비회원처리 수정,탈퇴회원 구분)</br>
 ![image](https://github.com/user-attachments/assets/37d77102-959e-46b7-8721-00fff2df4f1a)</br>
 ![image](https://github.com/user-attachments/assets/558a87ff-a481-4900-a69a-242b3326dbf7)</br>
 ![image](https://github.com/user-attachments/assets/fe29e2fa-7dce-47dc-a30b-32b8c0136d6f)</br>
-- CustomOAuth2UserService수정(리다이렉트 처리과정 삭제,Provider를 통한 소셜 구분,회원 비회원처리 수정,탈퇴회원 구분)
+- OAuth2 로그인 성공 핸들러</br>
 ![image](https://github.com/user-attachments/assets/39bcfa1a-39ca-4d7c-8cc5-645235c8f61a)</br>
 ![image](https://github.com/user-attachments/assets/51bfc879-8ec3-4e5a-9cd6-ff499b6074e3)</br>
-- OAuth2 로그인 성공 핸들러
+- OAuth2 로그인 실패 핸들러</br>
 ![image](https://github.com/user-attachments/assets/d577698c-5e8b-46b2-a610-3da6276023e8)</br>
-- OAuth2 로그인 실패 핸들러
+- LoginSuccess페이지</br>
 ![image](https://github.com/user-attachments/assets/852c3973-419e-4fec-b943-7675ad56dc21)</br>
-- LoginSuccess페이지 
 
 
 </div>
