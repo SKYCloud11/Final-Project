@@ -212,7 +212,8 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 #### 개선 사항 
 
 - 계속된 Spring Security 기본 로그인 성공 화면으로 이동하는 이슈로 인해 WebSecurityConfig에 Bean으로 성공 실패 핸드러를
-  작성하고 filterChain에 OAuth2 로그인 설정에 해당 핸들러를 설정해주고 LoginSuccess페이지를 작성하여 해결하였습니다.
+  작성하고 filterChain에 OAuth2 로그인 설정에 해당 핸들러를 설정해주고 LoginSuccess페이지 및 SocialSignupComponent페이지를 작성하였습니다.
+- 핸들러와 프론트의 페이지를 작성하고난 후 기존의 CustomOAuth2UserService코드를 핸들러에 맞게 수정하여 해결하였습니다.
   
 <details>
 <summary><b>개선된 코드</b></summary>
