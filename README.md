@@ -280,7 +280,7 @@ WebSecurityConfig에 OAuth2AuthorizedClientProvider코드를 추가하였지만 
 </div>
 </details>
 
-### 8. 미흡한 점 & 잘한 점 & 향후 개선사항
+## 8. 미흡한 점 & 잘한 점 & 향후 개선사항
 
 ![image](https://github.com/user-attachments/assets/7af160df-7871-4144-9597-d051fe54efea)
 
