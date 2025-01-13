@@ -109,7 +109,7 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 #### 6.1.1 자체로그인 
 
-> JWT와 Security를 사용하고 쿠키에 토큰을 저장하는 방식의 자체로그인을 구현</br>
+> JWT와 Security를 사용하고 쿠키에 토큰을 저장하는 방식의 자체로그인을 구현 하였습니다.</br>
 > - BackEnd코드</br>
 > [Controller 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/login/controller/UserLoginController.java#L1-L95)</br>
 > [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/login/service/UserLoginServiceImpl.java#L1-L70)</br>
@@ -119,38 +119,53 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 #### 6.1.2 OAuth2 로그인
 
->구글,네이버,카카오를 이용한 OAuth2 소셜 로그인 기능 구현</br>
+>구글,네이버,카카오를 이용한 OAuth2 소셜 로그인 기능 구현 하였습니다(토큰 생성 및 저장은 자체와 동일).</br>
 > - BackEnd코드</br>
 > [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/oauthlogin/service/CustomOAuth2UserService.java#L1-L167)</br>
 > [핸들러 코드보기](https://github.com/SKYCloud11/Final-Project/blob/6cbcc17155a1a52bb815549555830d75f305331a/backend/src/main/java/com/spot/fun/config/WebSecurityConfig.java#L173-L252)</br>
 
 ### 6.2. 회원가입
 
-#### 6.2.1 자체회원가입
+#### 6.2.1 자체,소셜 회원가입
 
-> 자체,소셜 회원가입을 통해 서비스를 이용
+> 자체,소셜 회원가입을 통해 서비스를 이용할 수 있습니다.
 > - BackEnd코드</br>
 > [Controller 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/signup/controller/SignupController.java#L1-L84)</br>
 > [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/signup/service/SignupServiceImpl.java#L1-L169)</br>
-> - 자체와 소셜 회원가입은 같은 컨트롤러와 서비스에 작성
+> - 자체와 소셜 회원가입은 같은 컨트롤러와 서비스에 작성</br>
 > - FrontEnd코드</br>
 > [Compornent(자체) 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/component/SignupComponent.jsx#L1-L595)</br>
 > [Compornent(소셜) 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/component/SocialSignupComponent.jsx#L1-L503)</br>
 > [API 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/api/SignupApi.js#L1-L51)</br>
-> - 자체와 소셜 API는 같은 API에 작성
-
-
-
-
+> - 자체와 소셜 API는 같은 API에 작성</br>
 
 ### 6.3. 이메일 인증
-![image](https://github.com/user-attachments/assets/c2cb933d-d31c-4e53-a8ae-4ed03106e620)
 
-6.3.1 네이버 STMP사용 인증 메일 발송기능 
+> 이메일 인증을 통해 회원가입,아이디,비밀번호 찾기 진행이 가능합니다.
+> - BackEnd코드</br>
+> [Controller 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/signup/controller/EmailController.java#L1-L26)</br>
+> [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/signup/service/EmailService.java#L1-L37)</br>
 
-![image](https://github.com/user-attachments/assets/ae4079bf-dfb5-493f-b7d9-5d9e4372faef)
+### 6.4. WebSecurityConfig
 
-6.3.2 회원가입에서 이메일 인증 검증(요청 URI에 따라 처리 분기)
+> Spring Security를 사용하여 인증 및 권한 부여를 설정하고 OAuth2 기반 소셜 로그인, JWT 인증, CORS 설정 등을 관리하는 코드를 WebSecurityConfig로 구현 하였습니다.</br>
+> [코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/config/WebSecurityConfig.java#L1-L253)</br>
+
+### 6.5. JwtToken
+
+> Spring Security에서 사용되는 OncePerRequestFilter를 상속하여 매 요청에 대해 JWT를 검증하고 인증 정보를 설정하는 역할을 합니다.</br>
+> [TokenFilter 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/config/jwt/JwtTokenFilter.java#L1-L116)</br>
+> JWT를 생성, 검증, 파싱하여 사용자 인증을 처리하고, 사용자 정보를 포함한 토큰을 생성하거나 추출하는 역할을 합니다.</br>
+> [TokenProvider 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/config/jwt/JwtTokenProvider.java#L1-L134)</br>
+
+
+### 6.6. Token관리
+
+> 리프레시 토큰을 쿠키에서 추출하고 유효성을 검사하여 새로운 액세스 토큰을 발급하거나, OAuth 및 사용자 로그인을 처리하는 유틸리티와 함께 현재 사용자 정보를 관리하는 서비스 구현 하였습니다.</br>
+> [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/token/service/AuthTokenServiceImpl.java#L1-L121)</br>
+> 토큰 생성, 검증, 삭제, 쿠키 관리, 토큰 갱신, 그리고 사용자 인증 정보를 반환하는 유틸리티 역할을 구현 하였습니다.</br>
+> [Utill 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/token/util/AuthTokenUtil.java#L1-L252)</br>
+
 
 </div>
 </details>
