@@ -189,10 +189,10 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 
 
 ## 7. 핵심 트러블 슈팅
-### 7.1. OAuth2 로그인 이슈 
+### 7.1.1 OAuth2 로그인 이슈 
 
 #### 기존 사항 
-- 소셜로그인 이후 명시적으로 리다이렉트URL을 CustomOAuth2UserService에 지정했지만  Spring Security가 기본적으로 제공하는 로그인 성공 화면으로이동하는 문제가 발생하였습니다.
+- 소셜로그인 이후 명시적으로 리다이렉트URL을 CustomOAuth2UserService에 지정했지만 Spring Security가 기본적으로 제공하는 로그인 성공 화면으로이동하는 문제가 발생하였습니다.
 
 - OAuth2로그인을 처음으로 구현해보았기에 CustomOAuth2UserService만 작성하고 이 안에서 리다이렉트처리를 하면된다고 생각하였지만 해당 이슈를 통해 구글링 한 결과 성공 핸들러와 실패 핸들러 프론트의 성공페이지를 작성하여야 한다는것을 알게 되었습니다.
 
@@ -231,6 +231,49 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 - LoginSuccess페이지</br>
 ![image](https://github.com/user-attachments/assets/852c3973-419e-4fec-b943-7675ad56dc21)</br>
 
+</div>
+</details>
+
+### 7.1.2 카카오 로그인 이슈 
+
+#### 기존 사항 
+- 네이버와 구글은 정상으로 작동하지만 카카오 로그인에서 기존의 OAuth2에서 발생하던 Spring Security가 기본적으로 제공하는 로그인 성공 화면으로이동하는 문제가 발생하였습니다.
+
+- CustomOAuth2UserService에서 네이버와 구글과 같은 설정으로 카카오를 설정해 주었지만 여전히 같은 이슈가 발생하였습니다.
+  구글링과 AI의 도움으로 프로퍼티의 kakao.client-authentication-method 설정과 해당 설정을 지원하도록 하는 코드가 필요하다는 것을 알게되었습니다.
+
+<details>
+<summary><b>기존 코드</b></summary>
+<div markdown="1">
+ 
+- CustomOAuth2UserService는 변경할 필요가 없었지만 프로퍼티의 설정중 kakao.client-authentication-method가
+  POST형식으로 진행 되었고 네이버와 구글은 client-authentication-method가 없다는 것을 보았습니다.</br>
+![프로퍼티 수정전](https://github.com/user-attachments/assets/b5ca8c60-e12c-4615-af32-20df67355228)</br>
+
+</div>
+</details>
+
+#### 개선 사항 
+
+- 프로퍼티의 설정 중 카카오 설정의 client-authentication-method를 POST에서 client_secret_post로 변경하고
+client_secret을 카카오 개발자센터에서 발급받고 프로퍼티에 추가 하였습니다.
+WebSecurityConfig에 OAuth2AuthorizedClientProvider코드를 추가하였지만 여전히 같은 이슈가 반복되어 강제하도록하는 코드CustomAccessTokenResponseClient로 AccessTokenResponseClient를 커스텀하고 추가적으로 CustomRequestEntityConverter를 추가하고 authenticationManager와 authorizedClientManager를 더 추가하여 완전하게 해결 하였습니다.
+  
+<details>
+<summary><b>개선된 코드</b></summary>
+<div markdown="1">
+
+- 프로퍼티 설정 부분 수정</br>
+![프로퍼티 수정후](https://github.com/user-attachments/assets/12edaa61-c7af-4baa-9bf6-1912c9ff2c03)</br>
+  
+- authorization_code에서 액세스 토큰 요청을 처리하기 위해 DefaultAuthorizationCodeTokenResponseClient를 생성하고, 요청 변환을 커스터마이징하기 위해 CustomRequestEntityConverter를 설정하는 accessTokenResponseClient코드를 추가</br>
+![image](https://github.com/user-attachments/assets/09995c92-4711-47f0-8a38-f9be7f484c97)</br>
+- 카카오 OAuth2 인증 요청에 client_secret을 요청 본문에 추가하는 CustomRequestEntityConverter 구현 </br>
+![image](https://github.com/user-attachments/assets/a3e6d234-590b-4fd9-a992-8c0db7c5979e)
+- authenticationManager 빈을 생성하여 Spring Security의 AuthenticationManager를 설정에서 가져와 인증 처리를 위한 객체로 반환하는 코드 추가</br>
+![image](https://github.com/user-attachments/assets/c634425e-cbb4-42c0-ad1b-ff7f3a12f032)</br>
+- authorization_code, refresh_token, 및 client_credentials 흐름을 지원하는 클라이언트 관리자를 생성하는 코드 추가</br>
+![image](https://github.com/user-attachments/assets/d64e53a8-4a3a-450e-b52d-9cdbe218675e)</br>
 
 </div>
 </details>
