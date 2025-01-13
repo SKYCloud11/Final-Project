@@ -73,10 +73,22 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 <div markdown="1">
 
 ### 1. 로그인 페이지
-![image](https://github.com/user-attachments/assets/db0d8cc6-7be0-4377-9a71-8368bd000ef0)</br>
+![image](https://github.com/user-attachments/assets/4500d40b-e8d2-4b5d-88cb-b5d2e79afbbd)</br>
+- 자체로그인과 소셜로그인이 함께 페이지에 나타납니다.
+![image](https://github.com/user-attachments/assets/87b878cc-cc77-42d6-b733-2478a31c3d95)</br>
+- 로그인 후 헤더 부분의 로그이 / 회원가입이 닉네임으로 표시 됩니다.
 
-### 1. 회원가입 페이지
-![image](https://github.com/user-attachments/assets/cadf68a6-e6e6-48dc-96db-480d0fc4b796)</br>
+### 1. 약관동의 페이지
+![image](https://github.com/user-attachments/assets/7c8729fc-68af-4771-ae93-e2d4e32e29d4)</br>
+- 자체 회원가입시에만 해당 페이지를 거치게 됩니다.
+
+### 1. 자체 회원가입 페이지
+![image](https://github.com/user-attachments/assets/5412c189-a83a-467b-b6c8-f969f6862cce)</br>
+
+### 1. 소셜 회원가입 페이지
+![회원가입 소셜](https://github.com/user-attachments/assets/5d9f9c4a-6ed5-4003-aef4-3e6f08dd056a)</br>
+- 소셜 회원가입은 비밀번호 입력을 제거하고 이메일 인증을 거치치 않습니다.
+- 아이디입력필드는 추후 디벨롭하여 추가되는 기능에 한하여 제거하거나 아이디를 이용할 수 있기에 추가하였습니다. 
 
 ### 1. 아이디 찾기 페이지
 ![image](https://github.com/user-attachments/assets/4bf0f1d7-6f61-4619-ac9a-97e8514da67a)</br>
