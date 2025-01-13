@@ -33,7 +33,7 @@
 - 참여 부분
   - 팀에서 역할 : 팀장 및 웹 디자이너 협업 커뮤니케이션
   - 참여 기능 : 회원가입,로그인,이메일인증,약관동의,OAuth2 로그인</br>
-  회원탈퇴,정보수정,아이디 & 비밀번호찾기
+  회원탈퇴,정보수정,아이디 & 비밀번호찾기,서버 및 배포구축
 
 </br>
 
@@ -118,13 +118,29 @@ FunSpot 서비스의 핵심 기능은 사용자 커스텀 여행 코스제작 �
 > [API 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/login/api/LoginApi.js#L1-L16)</br>
 
 #### 6.1.2 OAuth2 로그인
+
 >구글,네이버,카카오를 이용한 OAuth2 소셜 로그인 기능 구현</br>
 > - BackEnd코드</br>
 > [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/oauthlogin/service/CustomOAuth2UserService.java#L1-L167)</br>
->[핸들러 코드보기](https://github.com/SKYCloud11/Final-Project/blob/6cbcc17155a1a52bb815549555830d75f305331a/backend/src/main/java/com/spot/fun/config/WebSecurityConfig.java#L173-L252)
-
+> [핸들러 코드보기](https://github.com/SKYCloud11/Final-Project/blob/6cbcc17155a1a52bb815549555830d75f305331a/backend/src/main/java/com/spot/fun/config/WebSecurityConfig.java#L173-L252)</br>
 
 ### 6.2. 회원가입
+
+#### 6.2.1 자체회원가입
+
+> 자체,소셜 회원가입을 통해 서비스를 이용
+> - BackEnd코드</br>
+> [Controller 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/signup/controller/SignupController.java#L1-L84)</br>
+> [Service 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/backend/src/main/java/com/spot/fun/usr/signup/service/SignupServiceImpl.java#L1-L169)</br>
+> - 자체와 소셜 회원가입은 같은 컨트롤러와 서비스에 작성
+> - FrontEnd코드</br>
+> [Compornent(자체) 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/component/SignupComponent.jsx#L1-L595)</br>
+> [Compornent(소셜) 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/component/SocialSignupComponent.jsx#L1-L503)</br>
+> [API 코드보기](https://github.com/SKYCloud11/Final-Project/blob/54d4633878612bcffd0cf6add9607a12349c58e3/frontend/src/usr/signup/api/SignupApi.js#L1-L51)</br>
+> - 자체와 소셜 API는 같은 API에 작성
+
+
+
 
 
 ### 6.3. 이메일 인증
